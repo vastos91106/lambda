@@ -1,0 +1,19 @@
+.menu{
+    border-bottom: 2px solid #86BB71;
+    padding: 33.3px;
+}
+
+.title{
+    font-size: 18px;
+    padding-right: 6px;
+    margin: 0px;
+    float:left;
+}
+
+.btn{
+    background: #86BB71;
+    border: 1px solid #86BB71;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+}

@@ -2,6 +2,9 @@ import React,  { Component } from 'react';
 
 import {observer} from "mobx-react";
 
+import History from  '../History/History';
+import FilterContent from '../FilterContent/FilterContent';
+
 @observer
 class Main extends Component {
     constructor(props){
@@ -13,9 +16,10 @@ class Main extends Component {
     }
 
     render() {
-        return <div>
-            <h1>Main ...</h1>
-        </div>;
+        return <React.Fragment>
+            <History/>
+            <FilterContent/>
+        </React.Fragment>;
     }
 }
 
