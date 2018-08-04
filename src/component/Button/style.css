@@ -1,0 +1,20 @@
+.btn{
+    background: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 1px 7px 2px;
+    outline: none;
+    margin-right: 5px;
+}
+
+.active{
+    background: #86BB71;
+    border: 1px solid #86BB71;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor:default;
+}

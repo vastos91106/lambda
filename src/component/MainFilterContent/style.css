@@ -4,3 +4,19 @@
   overflow-y: scroll;
   height: 575px;
 }
+
+.row{
+  display: flex;
+  flex-basis: 2;
+  padding-top: 20px;
+}
+
+.btnsUl{
+  list-style: none;
+  padding: 0px;
+}
+
+
+.btnLi{
+  padding-top: 5px;
+}
