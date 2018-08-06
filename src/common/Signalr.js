@@ -14,7 +14,6 @@ class Signalr {
             .withUrl(url)
             .build();
 
-
         this.connection.start()
             .then()
             .catch((e) => {
@@ -22,6 +21,10 @@ class Signalr {
                     this.MainStore.RootStore.AuthStore.updateAuth(false);
                 }
             });
+
+        this.connection.on('GroupCreated', (groupId) => {
+            alert('group was created: ' + groupId);
+        });
     }
 
     invoke = (method, args) => {
