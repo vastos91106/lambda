@@ -15,6 +15,7 @@
 # PARCEL Artifacts
 dist/
 .cache/
+.cache/*
 
 # Build results
 [Dd]ebug/
