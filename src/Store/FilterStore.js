@@ -36,10 +36,10 @@ class FilterStore {
             case 21:
                 return { MinAge: 18, MaxAge: 21 }
 
-            case 17:
+            case 25:
                 return { MinAge: 22, MaxAge: 25 }
 
-            case 26:
+            case 35:
                 return { MinAge: 26, MaxAge: 80 }
         }
     }
