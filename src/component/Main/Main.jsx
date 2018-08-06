@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 
 import History from '../History/History';
 import FilterContent from '../FilterContent/FilterContent';
+import MessagesContent from '../MessagesContent/MessagesContent';
 
 @observer
 class Main extends Component {
@@ -20,7 +21,7 @@ class Main extends Component {
 
         return <React.Fragment>
             <History />
-           <FilterContent FilterStore={filterStore}/>
+           <MessagesContent FilterStore={filterStore}/>
         </React.Fragment>;
     }
 }
