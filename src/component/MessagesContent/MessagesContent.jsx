@@ -14,7 +14,7 @@ class FilterContent extends Component {
 
     render() {
         return <React.Fragment>
-            <BaseMainContent header={<Header/>} main={<Main/>}/>
+            <BaseMainContent  header={<Header/>} main={<Main {...this.props.MessageStore}/>}/>
         </React.Fragment>;
     }
 }

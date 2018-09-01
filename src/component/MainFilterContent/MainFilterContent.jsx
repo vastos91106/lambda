@@ -37,12 +37,48 @@ class MainFilterContent extends Component {
     };
 
     onPost = () => {
-        this.props.FilterStore.post()
-           // .then()
-           // .catch();
+        this.props.FilterStore.newDialog()
+        // .then()
+        // .catch();
+    }
+
+    cancel = () => {
+        this.props.FilterStore.cancel()
+    };
+
+    join = () => {
+
     }
 
     render() {
+        const isLoading = this.props.FilterStore.RootStore.MainStore.type === 'init';
+
+        return (
+            <div className={style.wrapper}>
+                {
+                    !isLoading &&
+                    <div className={style.content}>
+                        <div className={style.icon}>
+                        </div>
+                        Поиск собеседника
+                            <div className={style.loadingBtns}>
+                            <button onClick={this.cancel} className={`${style.btn}`}>Отмена</button>
+                        </div>
+                    </div>
+                }
+                {
+                    isLoading &&
+                    <div className={style.content}>
+                        Общение со случайно выбранным незнакомцем желаемого пола и возраста
+                            <div className={style.loadingBtns}>
+                            <button onClick={this.onPost} className={`${style.btn}`}>Поиск собеседника</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        )
+        /*
         const filterStore = this.props.FilterStore;
 
         let sex = [];
@@ -113,6 +149,7 @@ class MainFilterContent extends Component {
                 <Button isActive={true} onClick={this.onPost} text={'Отправить'} />
             </div>
         </div>
+        */
     }
 }
 

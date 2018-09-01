@@ -1,3 +1,13 @@
+.message{
+    width: 90%;
+    float:left;
+
+}
+
+.message_out{
+    float: right;
+}
+
 .message:after {
     visibility: hidden;
     display: block;
@@ -40,25 +50,26 @@
     position: relative;
 }
 
-.textContainer_out {
-    background: #94C2ED;
-}
-
-.icon_out {
-    margin-right: 3px;
-    font-size: 10px;
-    color: #94C2ED;
-}
-
 .textContainer_in {
     background: #86BB71;
 }
 
 .icon_in {
+    margin-right: 3px;
+    font-size: 10px;
+    color: #94C2ED;
+}
+
+.textContainer_out {
+    background: #94C2ED;
+}
+
+.icon_out {
     color: #86BB71;
 }
 
-.titleContainer_in {
+.titleContainer_out {
+    padding-right: 33px;
     text-align: right;
 }
 

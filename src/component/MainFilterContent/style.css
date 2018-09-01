@@ -20,3 +20,45 @@
 .btnLi{
   padding-top: 5px;
 }
+
+.wrapper{
+  height: 100%;
+    display: flex;
+}
+
+.content{
+  margin: auto;
+    background: #86BB71;
+    color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    height: initial;
+}
+
+.icon{
+  background: url(https://www.premierbet.me/static/images/loader-site.gif);
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  padding-top: 20px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+
+.btn {
+  color: #94C2ED;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #F2F5F8;
+  outline: none;
+}
+
+.loadingBtns{
+  margin: 0 auto;
+  width: fit-content;
+  padding-top: 15px;
+}

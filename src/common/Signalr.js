@@ -1,5 +1,7 @@
 import * as signalR from '@aspnet/signalr';
-import { resolve } from 'path';
+import {
+    resolve
+} from 'path';
 
 class Signalr {
     constructor(MainStore) {
@@ -9,31 +11,31 @@ class Signalr {
     }
 
     connect = () => {
-        const url = `${this.MainStore.apiUrl}/chat`;
-        this.connection = new signalR.HubConnectionBuilder()
-            .withUrl(url)
-            .build();
+        return new Promise((resolve, reject) => {
+            const url = `${this.MainStore.apiUrl}/v1/chat`;
+            this.connection = new signalR.HubConnectionBuilder()
+                .withUrl(url)
+                .build();
 
-        this.connection.start()
-            .then()
-            .catch((e) => {
-                if (e.statusCode === 401) {
-                    this.MainStore.RootStore.AuthStore.updateAuth(false);
-                }
+            this.connection.start()
+                .then((resolve))
+                .catch(reject);
+
+            this.connection.on('', (groupId) => {
+                alert('group was created: ' + groupId);
             });
-
-        this.connection.on('GroupCreated', (groupId) => {
-            alert('group was created: ' + groupId);
         });
-    }
+    };
 
-    invoke = (method, args) => {
+    invoke = (method, args = []) => {
         return new Promise((resolve, reject) => {
             this.connection.invoke(method, ...args)
                 .then((resp) => {
                     resolve(resp);
                 })
-                .catch((e)=>{reject(e)});
+                .catch((e) => {
+                    reject(e)
+                });
         })
     };
 }

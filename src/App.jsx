@@ -21,10 +21,6 @@ export default class App extends Component {
         return (
             <Router>
                 <div className={style.container}>
-                    {
-                        !this.RootStore.AuthStore.isAuth &&
-                        <Auth AuthStore={this.RootStore.AuthStore} />
-                    }
                     <Route exact path="/" render={(props) => <Main {...props} MainStore={this.RootStore.MainStore} />} />
                 </div>
             </Router>

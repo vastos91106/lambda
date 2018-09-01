@@ -6,6 +6,12 @@
     display: flex;
 }
 
+@media only screen and (max-device-width: 768px){
+	.container{
+		width: 100%;
+	}
+}
+
 body{
     background: #C5DDEB;
     font: 14px/20px "Lato", Arial, sans-serif;
