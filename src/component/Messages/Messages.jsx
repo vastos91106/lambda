@@ -18,8 +18,8 @@ class Messages extends Component {
         let self = this;
         if (!!this.scroll) {
             setTimeout(function (self) {
-                this.scroll.scrollYTo(10000);
-            }, 200, self);
+                self.scroll.scrollYTo(10000);
+            }, 0, self);
 
         }
         const messages = toJS(this.props.RootStore.MessageStore.messages).map((message) => {

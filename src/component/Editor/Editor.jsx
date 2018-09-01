@@ -15,17 +15,30 @@ class Editor extends Component {
 
     sent = () => {
         this.props.MessageStore.post(this.state.html);
-        this.setState({html:''});;
+        this.setState({ html: '' });;
     };
 
     newDialog = () => {
-         const root=   this.props.MessageStore.RootStore;
-         root.MainStore.left();
-         root.FilterStore.newDialog();
+        const root = this.props.MessageStore.RootStore;
+        root.MainStore.left();
+        root.FilterStore.newDialog();
     };
 
-    onChange = (e) =>{
-        this.setState({html:e.currentTarget.innerText});;
+    onChange = (e) => {
+        this.setState({ html: e.currentTarget.innerText });;
+    }
+
+    onKeyPressEditor = (event) => {
+        const state = Object.assign({}, this.state);
+        let text = state.html += event.key;
+
+        if (event.charCode === 13 && !event.shiftKey) {
+            this.sent();
+            this.stopEvent(event);
+        } else if (text.length > this.maxTextLength) {
+            if (event.charCode !== 8)
+                this.stopEvent(event);
+        }
     }
 
     render() {
@@ -33,8 +46,9 @@ class Editor extends Component {
             <div className={style.editor}>
                 <ContentEditable
                     className={style.input}
-                    html={this.state.html} 
+                    html={this.state.html}
                     onChange={this.onChange}
+                    onKeyPress={this.onKeyPressEditor}
                 />
                 <div className={style.btns}>
                     <button onClick={this.sent} className={`${style.btn}`}>Отправить</button>

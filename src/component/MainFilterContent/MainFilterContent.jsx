@@ -69,7 +69,7 @@ class MainFilterContent extends Component {
                 {
                     isLoading &&
                     <div className={style.content}>
-                        Общение со случайно выбранным незнакомцем желаемого пола и возраста
+                        Общение со случайно выбранным незнакомцем.
                             <div className={style.loadingBtns}>
                             <button onClick={this.onPost} className={`${style.btn}`}>Поиск собеседника</button>
                         </div>

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react";
-
+import moment from 'moment';
 import style from './style.css';
 
 const Message = (props) => {
-debugger;
+const time =moment(props.date).format('HH:MM')
     return (
         <li className={`${style.message} ${props.type === 'out' ? style.message_out : ' '}`}>
             <div className={`${style.titleContainer} ${props.type === 'out' ? style.titleContainer_out : ''}`}>
-                <span className={style.date}>{props.date.toLocaleTimeString().split(' ')[0]}</span>
+                <span className={style.date}>{time}</span>
                 <i className={style.icon}></i>
             </div>
             <div
