@@ -10,9 +10,18 @@ import style from './style.css';
 class Messages extends Component {
     constructor(props) {
         super(props);
+        this.scroll = null;
     }
 
+
     render() {
+        let self = this;
+        if (!!this.scroll) {
+            setTimeout(function (self) {
+                this.scroll.scrollYTo(10000);
+            }, 200, self);
+
+        }
         const messages = toJS(this.props.RootStore.MessageStore.messages).map((message) => {
             return <Message {...message} />;
         });
@@ -20,6 +29,7 @@ class Messages extends Component {
         return (
             <React.Fragment>
                 <ScrollArea
+                    ref={(ref => { this.scroll = ref })}
                     speed={0.8}
                     className={style.messages}
                     horizontal={false}
@@ -28,7 +38,7 @@ class Messages extends Component {
                         {messages}
                     </ul>
                 </ScrollArea>
-                <Editor MessageStore={this.props.RootStore.MessageStore}/>
+                <Editor MessageStore={this.props.RootStore.MessageStore} />
             </React.Fragment>
         );
     }

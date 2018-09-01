@@ -26,6 +26,7 @@ class Signalr {
             });
 
             this.connection.on('StartConversation', (groupId) => {
+                alert('Собеседник найден');
                 this.MainStore.join(groupId);
             });
 

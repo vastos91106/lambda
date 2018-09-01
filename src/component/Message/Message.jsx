@@ -8,7 +8,7 @@ debugger;
     return (
         <li className={`${style.message} ${props.type === 'out' ? style.message_out : ' '}`}>
             <div className={`${style.titleContainer} ${props.type === 'out' ? style.titleContainer_out : ''}`}>
-                <span className={style.date}>{props.date.toString()}</span>
+                <span className={style.date}>{props.date.toLocaleTimeString().split(' ')[0]}</span>
                 <i className={style.icon}></i>
             </div>
             <div

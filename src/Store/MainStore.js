@@ -44,6 +44,7 @@ class MainStore {
         this.type = 'init';
         this.groupId = '';
         this.RootStore.MessageStore.messages=[];
+        this.Signalr.invoke('EndConversation');
     }
 }
 
