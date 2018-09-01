@@ -21,11 +21,27 @@ class Signalr {
                 .then((resolve))
                 .catch(reject);
 
-            this.connection.on('', (groupId) => {
-                alert('group was created: ' + groupId);
+            this.connection.on('StartConversationWasCanceled', () => {
+                this.MainStore.RootStore.FilterStore.cancel();
             });
+
+            this.connection.on('StartConversation', (groupId) => {
+                this.MainStore.join(groupId);
+            });
+
+            this.connection.on('EndConversation', (par) => {
+                alert('Собеседник покинул диалог');
+                this.MainStore.left();
+            });
+
+            this.connection.on('Sent', (text) => {
+                this.MainStore.RootStore.MessageStore.get(text);
+            });
+
         });
     };
+
+
 
     invoke = (method, args = []) => {
         return new Promise((resolve, reject) => {

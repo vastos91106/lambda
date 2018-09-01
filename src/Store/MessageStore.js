@@ -10,19 +10,28 @@ class MessageStore {
 
     @observable messages = [];
 
-    @action post = () => {
+    @action post = (text) => {
 
-        this.RootStore.MainStore.Signalr.invoke('Search', [searchCriteria])
+        this.RootStore.MainStore.Signalr.invoke('Sent', [this.RootStore.MainStore.groupId, text])
             .then(((r) => {
-                console.log(r)
+                this.RootStore.MessageStore.messages.push({
+                    date: new Date(),
+                    text: text,
+                    type: 'out'
+                });
             }))
             .catch((e) => {
-                console.log(e)
+                console.log(e);
+                alert('Ошибка отправки сообщения');
             })
     }
 
-    @action get = () => {
-
+    @action get = (text) => {
+        this.RootStore.MessageStore.messages.push({
+            date: new Date(),
+            text: text,
+            type: 'in'
+        });
     };
 }
 

@@ -24,13 +24,26 @@ class MainStore {
 
     //init/loading/chat
     @observable type = 'init';
+    @observable groupId = '';
 
-     connect = () => {
-     return   new Promise((resolve, reject) => {
+    connect = () => {
+        return new Promise((resolve, reject) => {
             this.Signalr.connect()
                 .then(resolve)
                 .catch(reject);
         })
+    }
+
+    join = (groupId) => {
+        this.type = 'chat';
+        this.groupId = groupId;
+        this.RootStore.MessageStore.messages=[];
+    };
+
+    left = () => {
+        this.type = 'init';
+        this.groupId = '';
+        this.RootStore.MessageStore.messages=[];
     }
 }
 

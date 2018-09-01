@@ -10,49 +10,6 @@ import style from './style.css';
 class Messages extends Component {
     constructor(props) {
         super(props);
-
-        this.state = [
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'in'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            },
-            {
-                date: '10:12, Сегодня',
-                text: 'Привет',
-                type: 'out'
-            }
-        ];
     }
 
     render() {
@@ -71,7 +28,7 @@ class Messages extends Component {
                         {messages}
                     </ul>
                 </ScrollArea>
-                <Editor />
+                <Editor MessageStore={this.props.RootStore.MessageStore}/>
             </React.Fragment>
         );
     }

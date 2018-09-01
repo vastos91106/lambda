@@ -13,16 +13,32 @@ class Editor extends Component {
         }
     }
 
+    sent = () => {
+        this.props.MessageStore.post(this.state.html);
+        this.setState({html:''});;
+    };
+
+    newDialog = () => {
+         const root=   this.props.MessageStore.RootStore;
+         root.MainStore.left();
+         root.FilterStore.newDialog();
+    };
+
+    onChange = (e) =>{
+        this.setState({html:e.currentTarget.innerText});;
+    }
+
     render() {
         return (
             <div className={style.editor}>
                 <ContentEditable
                     className={style.input}
-                    html={this.state.html} // innerHTML of the editable div
+                    html={this.state.html} 
+                    onChange={this.onChange}
                 />
                 <div className={style.btns}>
-                    <button className={`${style.btn}`}>Отправить</button>
-                    <button className={`${style.btn} ${style.btn_exit}`}>Новый собеседник</button>
+                    <button onClick={this.sent} className={`${style.btn}`}>Отправить</button>
+                    <button onClick={this.newDialog} className={`${style.btn} ${style.btn_exit}`}>Новый собеседник</button>
                 </div>
             </div>
         )
