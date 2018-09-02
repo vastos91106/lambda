@@ -1,13 +1,19 @@
-.content{
+.content {
   padding-left: 10px;
   margin-top: 6px;
 }
 
-.title{
+.title {
   font-weight: bold;
   font-size: 16px;
 }
 
-.info{
+.info {
   color: #92959E;
+}
+
+@media only screen and (max-device-width: 768px) {
+  .content {
+    margin-top: 0px !important;
+  }
 }

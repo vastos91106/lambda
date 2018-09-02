@@ -1,12 +1,12 @@
-.message{
+.message {
     width: 90%;
-    float:left;
+    float: left;
     margin-bottom: 10px;
     margin-left: 30px;
     margin-right: 30px;
 }
 
-.message_out{
+.message_out {
     float: right;
 }
 
@@ -74,6 +74,11 @@
     text-align: right;
 }
 
-
-
-
+@media only screen and (max-device-width: 768px) {
+    .titleContainer_out {
+        padding-right: 0px;
+    }
+    .textContainer {
+        padding: 0px 20px !important;
+    }
+}

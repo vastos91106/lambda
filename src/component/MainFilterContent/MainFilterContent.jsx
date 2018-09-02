@@ -43,7 +43,7 @@ class MainFilterContent extends Component {
     }
 
     cancel = () => {
-        this.props.FilterStore.cancel()
+        this.props.FilterStore.cancel().then()
     };
 
     join = () => {

@@ -21,9 +21,6 @@ class Signalr {
                 .then((resolve))
                 .catch(reject);
 
-            this.connection.on('StartConversationWasCanceled', () => {
-                this.MainStore.RootStore.FilterStore.cancel();
-            });
 
             this.connection.on('StartConversation', (groupId) => {
                 alert('Собеседник найден');

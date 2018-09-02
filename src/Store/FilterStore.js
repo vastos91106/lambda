@@ -72,6 +72,7 @@ class FilterStore {
 
     @action newDialog = () => {
         this.RootStore.MainStore.type = 'loading';
+        console.log(11);
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('StartConversation')
                 .then(()=>{
@@ -85,11 +86,12 @@ class FilterStore {
     };
 
     @action cancel = () => {
+        debugger;
         this.RootStore.MainStore.type = 'init';
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('CancelOfStartConversation')
-                .then(resolve)
-                .catch(reject)
+                .then()
+                .catch()
         });
     };
 }

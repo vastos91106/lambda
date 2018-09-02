@@ -2,3 +2,9 @@
     margin: 10px;
     height: calc(100% - 289px);
 }
+
+@media only screen and (max-device-width: 768px) {
+	.messages {
+        height: calc(100% - 180px);
+	}
+}
