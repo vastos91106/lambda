@@ -62,7 +62,7 @@ class MainFilterContent extends Component {
                         </div>
                         Поиск собеседника
                             <div className={style.loadingBtns}>
-                            <button onClick={this.cancel} className={`${style.btn}`}>Отмена</button>
+                            <a href="#" onClick={this.cancel}   className={`${style.button3} ${style.button3_cancel}`}>Отмена</a>
                         </div>
                     </div>
                 }
@@ -71,7 +71,7 @@ class MainFilterContent extends Component {
                     <div className={style.content}>
                         Общение со случайно выбранным незнакомцем.
                             <div className={style.loadingBtns}>
-                            <button onClick={this.onPost} className={`${style.btn}`}>Поиск собеседника</button>
+                            <a href="#" onClick={this.onPost}  className={style.button3}>Поиск собеседника</a>
                         </div>
                     </div>
                 }

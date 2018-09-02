@@ -1,41 +1,40 @@
-.content{
+.content {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
   overflow-y: scroll;
   height: 575px;
 }
 
-.row{
+.row {
   display: flex;
   flex-basis: 2;
   padding-top: 20px;
 }
 
-.btnsUl{
+.btnsUl {
   list-style: none;
   padding: 0px;
 }
 
-
-.btnLi{
+.btnLi {
   padding-top: 5px;
 }
 
-.wrapper{
-  height: 100%;
-    display: flex;
+.wrapper {
+  height: calc(100% - 88px);
+  display: flex;
 }
 
-.content{
+.content {
   margin: auto;
-    background: #86BB71;
-    color: #fff;
-    padding: 50px;
-    border-radius: 5px;
-    height: initial;
+  background: #86BB71;
+  color: #fff;
+  padding: 50px;
+  border-radius: 5px;
+  height: initial;
 }
 
-.icon{
+.icon {
   background: url(https://www.premierbet.me/static/images/loader-site.gif);
   width: 40px;
   height: 40px;
@@ -44,7 +43,6 @@
   background-repeat: no-repeat;
   margin: 0 auto;
 }
-
 
 .btn {
   color: #94C2ED;
@@ -57,8 +55,42 @@
   outline: none;
 }
 
-.loadingBtns{
+.loadingBtns {
   margin: 0 auto;
   width: fit-content;
   padding-top: 15px;
+}
+
+.button3 {
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #FFFFFF;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.button3:hover {
+  background-color: #4095c6;
+}
+
+.button3_cancel {
+  background-color: #ff3860;
+}
+
+.button3_cancel:hover {
+  background-color: #d22144;
+}
+
+@media all and (max-width:30em) {
+  .button3 {
+    display: block;
+    margin: 0.2em auto;
+  }
 }

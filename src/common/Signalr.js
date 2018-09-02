@@ -12,7 +12,7 @@ class Signalr {
 
     connect = () => {
         return new Promise((resolve, reject) => {
-            const url = `${this.MainStore.apiUrl}/v1/chat`;
+            const url = `/v1/chat`;
             this.connection = new signalR.HubConnectionBuilder()
                 .withUrl(url)
                 .build();

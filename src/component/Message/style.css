@@ -1,7 +1,9 @@
 .message{
     width: 90%;
     float:left;
-
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .message_out{
@@ -18,7 +20,7 @@
 }
 
 .titleContainer {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .date {
@@ -41,11 +43,10 @@
 
 .textContainer {
     color: white;
-    padding: 18px 20px;
+    padding: 5px 20px;
     line-height: 26px;
     font-size: 16px;
-    border-radius: 7px;
-    margin-bottom: 30px;
+    border-radius: 3px;
     width: 90%;
     position: relative;
 }

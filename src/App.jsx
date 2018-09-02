@@ -19,11 +19,9 @@ export default class App extends Component {
 
     render() {
         return (
-            <Router>
                 <div className={style.container}>
-                    <Route exact path="/" render={(props) => <Main {...props} MainStore={this.RootStore.MainStore} />} />
+                    <Main  MainStore={this.RootStore.MainStore} />
                 </div>
-            </Router>
         )
     }
 }

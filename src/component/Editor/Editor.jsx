@@ -51,8 +51,8 @@ class Editor extends Component {
                     onKeyPress={this.onKeyPressEditor}
                 />
                 <div className={style.btns}>
-                    <button onClick={this.sent} className={`${style.btn}`}>Отправить</button>
-                    <button onClick={this.newDialog} className={`${style.btn} ${style.btn_exit}`}>Новый собеседник</button>
+                    <a href="#" onClick={this.newDialog} className={`${style.button3} ${style.button3_cancel}`}>Новый собеседник</a>
+                    <a href="#" onClick={this.sent}  className={style.button3}>Отправить</a>
                 </div>
             </div>
         )
