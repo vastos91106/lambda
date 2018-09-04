@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import ContentEditable from 'react-contenteditable';
 
-import Button from '../Button/Button';
-import style from './style.css'
+import style from './style.css';
 
 class Editor extends Component {
     constructor(props) {
         super(props);
 
+        this.input = null;
         this.state = {
             html: ''
-        }
+        };
     }
 
     sent = () => {
-        this.props.MessageStore.post(this.state.html);
-        this.setState({ html: '' });;
+        const regex = /(<[^>]+>|<[^>]>|<\/[^>]>)/g;
+        const value = this.state.html.replace(regex, ' ');
+
+        this.props.MessageStore.post(value);
+        this.input.lastHtml = '';
+        this.setState({ html: '' });
     };
 
     newDialog = () => {
@@ -25,37 +29,37 @@ class Editor extends Component {
     };
 
     onChange = (e) => {
-        this.setState({ html: e.currentTarget.innerText });;
-    }
+        this.setState({ html: e.target.value });
+    };
 
     onKeyPressEditor = (event) => {
         const state = Object.assign({}, this.state);
-        let text = state.html += event.key;
 
-        if (event.charCode === 13 && !event.shiftKey) {
+        if (event.charCode === 13) {
             this.sent();
-            this.stopEvent(event);
-        } else if (text.length > this.maxTextLength) {
-            if (event.charCode !== 8)
-                this.stopEvent(event);
+            event.stopPropagation();
         }
-    }
+    };
 
     render() {
         return (
             <div className={style.editor}>
                 <ContentEditable
+                    ref={(ref) => {
+                        this.input = ref;
+                    }}
                     className={style.input}
                     html={this.state.html}
                     onChange={this.onChange}
                     onKeyPress={this.onKeyPressEditor}
                 />
                 <div className={style.btns}>
-                    <a href="#" onClick={this.newDialog} className={`${style.button3} ${style.button3_cancel}`}>Новый собеседник</a>
-                    <a href="#" onClick={this.sent}  className={style.button3}>Отправить</a>
+                    <a href="#" onClick={this.newDialog} className={`${style.button3} ${style.button3_cancel}`}>Новый
+                        собеседник</a>
+                    <a href="#" onClick={this.sent} className={style.button3}>Отправить</a>
                 </div>
             </div>
-        )
+        );
     }
 }
 

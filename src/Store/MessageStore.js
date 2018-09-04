@@ -11,7 +11,7 @@ class MessageStore {
     @observable messages = [];
 
     @action post = (text) => {
-
+        console.log('sending');
         this.RootStore.MainStore.Signalr.invoke('Sent', [this.RootStore.MainStore.groupId, text])
             .then(((r) => {
                 this.RootStore.MessageStore.messages.push({
@@ -24,7 +24,7 @@ class MessageStore {
                 console.log(e);
                 alert('Ошибка отправки сообщения');
             })
-    }
+    };
 
     @action get = (text) => {
         this.RootStore.MessageStore.messages.push({

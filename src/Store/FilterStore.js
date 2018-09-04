@@ -16,7 +16,8 @@ class FilterStore {
     }
 
     @observable sex = 0;
-    @observable year = 21;;
+    @observable year = 21;
+    ;
 
     @observable partnerSex = 0;
     @observable partnerYears = [17];
@@ -35,12 +36,12 @@ class FilterStore {
 
         this.RootStore.MainStore.Signalr.invoke('Search', [searchCriteria])
             .then(((r) => {
-                console.log(r)
+                console.log(r);
             }))
             .catch((e) => {
-                console.log(e)
-            })
-    }
+                console.log(e);
+            });
+    };
 
     getServerYear = (year) => {
         switch (year) {
@@ -48,40 +49,56 @@ class FilterStore {
                 return {
                     MinAge: 0,
                     MaxAge: 17
-                }
+                };
 
             case 21:
                 return {
                     MinAge: 18,
                     MaxAge: 21
-                }
+                };
 
             case 25:
                 return {
                     MinAge: 22,
                     MaxAge: 25
-                }
+                };
 
             case 35:
                 return {
                     MinAge: 26,
                     MaxAge: 80
-                }
+                };
         }
-    }
+    };
+
+    @action newDialogBot = () => {
+        return new Promise((resolve, reject) => {
+            this.RootStore.MainStore.Signalr.invoke('StartConversationWithBot')
+                .then(() => {
+                })
+                .catch((e) => {
+                    alert(`Oшибка :( \n ${e}`);
+                    this.RootStore.MainStore.type = 'init';
+                });
+        });
+    };
 
     @action newDialog = () => {
         this.RootStore.MainStore.type = 'loading';
-        console.log(11);
+
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('StartConversation')
-                .then(()=>{
-                   
+                .then(() => {
+                    setTimeout((self) => {
+                        if (self.RootStore.MainStore.type === 'loading') {
+                            self.newDialogBot();
+                        }
+                    }, 5000, this);
                 })
-                .catch((e)=>{
-                    alert(`Oшибка :( \n ${e}`)
-                    this.RootStore.MainStore.type= 'init';
-                })
+                .catch((e) => {
+                    alert(`Oшибка :( \n ${e}`);
+                    this.RootStore.MainStore.type = 'init';
+                });
         });
     };
 
@@ -91,7 +108,7 @@ class FilterStore {
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('CancelOfStartConversation')
                 .then()
-                .catch()
+                .catch();
         });
     };
 }

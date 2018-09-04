@@ -32,7 +32,7 @@ class MainStore {
                 .then(resolve)
                 .catch(reject);
         })
-    }
+    };
 
     join = (groupId) => {
         this.type = 'chat';
