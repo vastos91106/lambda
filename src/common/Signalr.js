@@ -12,7 +12,7 @@ class Signalr {
 
     connect = () => {
         return new Promise((resolve, reject) => {
-            const url = `/v1/chat`;
+            const url = `${this.MainStore.apiUrl}/v1/chat`;
             this.connection = new signalR.HubConnectionBuilder()
                 .withUrl(url)
                 .build();
@@ -23,12 +23,10 @@ class Signalr {
 
 
             this.connection.on('StartConversation', (groupId) => {
-                alert('Собеседник найден');
                 this.MainStore.join(groupId);
             });
 
             this.connection.on('EndConversation', (par) => {
-                alert('Собеседник покинул диалог');
                 this.MainStore.left();
             });
 
@@ -36,6 +34,9 @@ class Signalr {
                 this.MainStore.RootStore.MessageStore.get(text);
             });
 
+            this.connection.on('Typing',()=>{
+                this.MainStore.RootStore.MessageStore.typing();
+            });
         });
     };
 

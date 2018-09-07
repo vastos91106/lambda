@@ -37,15 +37,20 @@ class MainStore {
     join = (groupId) => {
         this.type = 'chat';
         this.groupId = groupId;
-        this.RootStore.MessageStore.messages=[];
+        this.RootStore.MessageStore.messages = [];
     };
 
     left = () => {
-        this.type = 'init';
+        this.type = 'chat';
         this.groupId = '';
-        this.RootStore.MessageStore.messages=[];
+        this.RootStore.MessageStore.showLeftModal();
         this.Signalr.invoke('EndConversation');
     }
+
+    toMain = () => {
+        this.type = 'init';
+        this.groupId = '';
+    };
 }
 
 

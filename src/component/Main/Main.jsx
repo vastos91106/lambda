@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { observer } from "mobx-react";
 
-import History from '../History/History';
-import FilterContent from '../FilterContent/FilterContent';
-import MessagesContent from '../MessagesContent/MessagesContent';
+import Filter from '../MainFilterContent/MainFilterContent';
+import Messages from '../Messages/Messages';
 
 import style from './style.css';
 @observer
@@ -19,7 +18,7 @@ class Main extends Component {
     componentDidMount() {
         this.props.MainStore.connect()
             .then(() => {
-                 this.setState({ isLoading: false })
+                this.setState({ isLoading: false })
             });
     }
 
@@ -30,9 +29,9 @@ class Main extends Component {
         let content = null;
 
         if (this.props.MainStore.type === 'init' || this.props.MainStore.type === 'loading') {
-            content = <FilterContent FilterStore={FilterStore} />
+            content = <Filter FilterStore={FilterStore} />
         } else {
-            content = <MessagesContent MessageStore={MessageStore} />
+            content = <Messages MessageStore={MessageStore} />
         }
 
         return <React.Fragment>
@@ -41,10 +40,8 @@ class Main extends Component {
                 <div className={style.container}>
                     <div className={style.icon}>
                     </div>
-                    <div className={style.text}>
-                        Инициализация
-                            </div>
-
+                    <div className={style.loader}>
+                    </div>
                 </div>
             }
             {

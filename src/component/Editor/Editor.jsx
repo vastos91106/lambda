@@ -17,23 +17,15 @@ class Editor extends Component {
         const regex = /(<[^>]+>|<[^>]>|<\/[^>]>)/g;
         const value = this.state.html.replace(regex, ' ');
 
-        this.props.MessageStore.post(value);
-        this.input.lastHtml = '';
-        this.setState({ html: '' });
-    };
-
-    newDialog = () => {
-        const root = this.props.MessageStore.RootStore;
-        root.MainStore.left();
-        root.FilterStore.newDialog();
-    };
-
-    onChange = (e) => {
-        this.setState({ html: e.target.value });
+        if (value.length > 0) {
+            this.props.MessageStore.post(value);
+            this.input.lastHtml = '';
+            this.setState({ html: '' });
+        }
     };
 
     onKeyPressEditor = (event) => {
-        const state = Object.assign({}, this.state);
+       this.props.MessageStore.userTyping();
 
         if (event.charCode === 13) {
             this.sent();
@@ -41,22 +33,15 @@ class Editor extends Component {
         }
     };
 
+    onChange = (e) => {
+        this.setState({ html: e.target.value });
+    };
+
     render() {
         return (
             <div className={style.editor}>
-                <ContentEditable
-                    ref={(ref) => {
-                        this.input = ref;
-                    }}
-                    className={style.input}
-                    html={this.state.html}
-                    onChange={this.onChange}
-                    onKeyPress={this.onKeyPressEditor}
-                />
-                <div className={style.btns}>
-                    <a href="#" onClick={this.newDialog} className={`${style.button3} ${style.button3_cancel}`}>Новый
-                        собеседник</a>
-                    <a href="#" onClick={this.sent} className={style.button3}>Отправить</a>
+                <input onKeyPress={this.onKeyPressEditor} onChange={this.onChange} value={this.state.html} ref={(input) => { this.input = input }} placeholder={'Введите текст сообщения'} className={style.input} />
+                <div onClick={this.sent} className={style.icon}>
                 </div>
             </div>
         );

@@ -16,8 +16,7 @@ class FilterStore {
     }
 
     @observable sex = 0;
-    @observable year = 21;
-    ;
+    @observable year = 21;;
 
     @observable partnerSex = 0;
     @observable partnerYears = [17];
@@ -43,39 +42,10 @@ class FilterStore {
             });
     };
 
-    getServerYear = (year) => {
-        switch (year) {
-            case 17:
-                return {
-                    MinAge: 0,
-                    MaxAge: 17
-                };
-
-            case 21:
-                return {
-                    MinAge: 18,
-                    MaxAge: 21
-                };
-
-            case 25:
-                return {
-                    MinAge: 22,
-                    MaxAge: 25
-                };
-
-            case 35:
-                return {
-                    MinAge: 26,
-                    MaxAge: 80
-                };
-        }
-    };
-
     @action newDialogBot = () => {
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('StartConversationWithBot')
-                .then(() => {
-                })
+                .then(() => {})
                 .catch((e) => {
                     alert(`Oшибка :( \n ${e}`);
                     this.RootStore.MainStore.type = 'init';
@@ -83,7 +53,8 @@ class FilterStore {
         });
     };
 
-    @action newDialog = () => {
+    @action newDialog = (sex = 0) => {
+        this.sex = sex;
         this.RootStore.MainStore.type = 'loading';
 
         return new Promise((resolve, reject) => {
@@ -93,7 +64,7 @@ class FilterStore {
                         if (self.RootStore.MainStore.type === 'loading') {
                             self.newDialogBot();
                         }
-                    }, 5000, this);
+                    }, 10000, this);
                 })
                 .catch((e) => {
                     alert(`Oшибка :( \n ${e}`);
@@ -103,7 +74,6 @@ class FilterStore {
     };
 
     @action cancel = () => {
-        debugger;
         this.RootStore.MainStore.type = 'init';
         return new Promise((resolve, reject) => {
             this.RootStore.MainStore.Signalr.invoke('CancelOfStartConversation')

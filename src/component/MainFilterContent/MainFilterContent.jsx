@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 import { observer } from "mobx-react";
 
-import Button from '../Button/Button';
-import ColFilterContent from '../ColFilterContent/ColFilterContent';
 import style from './style.css';
 
 @observer
@@ -12,71 +10,69 @@ class MainFilterContent extends Component {
         super(props);
     }
 
-    onChangeSex = () => {
-        const val = this.props.FilterStore.sex === 0 ? 1 : 0;
-        this.props.FilterStore.sex = val;
-    };
-
-    onChangePartnerSex = () => {
-        const val = this.props.FilterStore.partnerSex === 0 ? 1 : 0;
-        this.props.FilterStore.partnerSex = val;
-    };
-
-    onChangeYear = (val) => {
-        this.props.FilterStore.year = val;
-    };
-
-    onChangePartnerYears = (val) => {
-        const index = _.indexOf(this.props.FilterStore.partnerYears, val);
-
-        if (index === -1) {
-            this.props.FilterStore.partnerYears.push(val);
-        } else {
-            this.props.FilterStore.partnerYears.splice(index, 1);
-        }
-    };
-
-    onPost = () => {
-        this.props.FilterStore.newDialog()
-        // .then()
-        // .catch();
+    onPost = (sex) => {
+        this.props.FilterStore.newDialog(sex)
     }
 
     cancel = () => {
         this.props.FilterStore.cancel().then()
     };
 
-    join = () => {
-
+    getRandomIntInclusive = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
     }
 
     render() {
-        const isLoading = this.props.FilterStore.RootStore.MainStore.type === 'init';
+        const isLoading = this.props.FilterStore.RootStore.MainStore.type === 'loading';
+
+        const sex = this.props.FilterStore.sex === 0 ? 'девушек' : 'парней';
 
         return (
-            <div className={style.wrapper}>
-                {
-                    !isLoading &&
-                    <div className={style.content}>
-                        <div className={style.icon}>
-                        </div>
-                        Поиск собеседника
-                            <div className={style.loadingBtns}>
-                            <a href="#" onClick={this.cancel}   className={`${style.button3} ${style.button3_cancel}`}>Отмена</a>
-                        </div>
-                    </div>
-                }
+            <React.Fragment>
                 {
                     isLoading &&
-                    <div className={style.content}>
-                        Общение со случайно выбранным незнакомцем.
-                            <div className={style.loadingBtns}>
-                            <a href="#" onClick={this.onPost}  className={style.button3}>Поиск собеседника</a>
+                    <div className={style.container}>
+                        <div className={style.icon}>
+                        </div>
+                        <div className={style.onlineText}>
+                            {this.getRandomIntInclusive(1000, 1200)} человек онлайн
+                        </div>
+                        <div className={style.personText}>
+                            {this.getRandomIntInclusive(50, 100)}  {sex} в поиске
+                        </div>
+                        <div className={style.loader}>
+                        </div>
+                        <div className={style.cancelBtn} onClick={this.cancel}>
+                            Отменить
                         </div>
                     </div>
                 }
-
-            </div>
+                {
+                    !isLoading &&
+                    <div className={style.container}>
+                        <div className={style.icon_big}>
+                        </div>
+                        <div className={style.title}>
+                            анонимный чат
+                            </div>
+                        <div className={style.sexTitle}>
+                            Кто ты?
+                            </div>
+                        <div className={`${style.btn} `} onClick={()=>{this.onPost(0)}}>
+                            <div className={style.btn_man}>
+                            </div>
+                            Парень
+                            </div>
+                        <div className={`${style.btn}`} onClick={()=>{this.onPost(1)}}>
+                            <div className={style.btn_woman}>
+                            </div>
+                            Девушка
+                        </div>
+                    </div>
+                }
+            </React.Fragment>
         )
         /*
         const filterStore = this.props.FilterStore;
@@ -84,7 +80,7 @@ class MainFilterContent extends Component {
         let sex = [];
         let partnerSex = [];
 
-        if (filterStore.sex === 0) {
+        if (filterStore.sex === 1) {
             sex = [
                 <Button onClick={this.onChangeSex} isActive={true} text={'М'} />,
                 <Button onClick={this.onChangeSex} text={'Ж'} />
@@ -95,7 +91,7 @@ class MainFilterContent extends Component {
             ]
         }
 
-        if (filterStore.partnerSex === 0) {
+        if (filterStore.partnerSex === 1) {
             partnerSex = [
                 <Button onClick={this.onChangePartnerSex} isActive={true} text={'М'} />,
                 <Button onClick={this.onChangePartnerSex} text={'Ж'} />
