@@ -16,6 +16,7 @@
     padding-bottom: 9px;
     padding-left: 11px;
     padding-right: 11px;
+    word-break: break-all;
 }
 
 .wrapper:not(:last-child) {
